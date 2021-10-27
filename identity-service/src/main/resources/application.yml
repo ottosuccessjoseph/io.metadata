@@ -1,0 +1,36 @@
+server:
+  port: 10110
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate=DEBUG:
+spring:
+  application.name: identity-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: identity-users
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /rest-api-docs
+  swagger-ui:
+    path: /swagger-ui
+
+metadata:
+  srs:
+    jwt:
+      secret: zdtlD3JK56m6wTTgsNFhqzjqP
+      issuer: https://metadata.io
+    token:
+      access:
+        expiresInMs: 600000
+      refresh:
+        expiresInMs: 1200000
