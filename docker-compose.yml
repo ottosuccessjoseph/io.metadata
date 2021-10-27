@@ -1,0 +1,51 @@
+version: '3'
+services:
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - 10100:10100
+  identity-service:
+    build: ./identity-service
+    container_name: identity-service
+    ports:
+      - 10110:10110
+    depends_on:
+      - "api-gateway"
+      - "student-service"
+  student-service:
+    build: ./student-service
+    container_name: student-service
+    ports:
+      - 10120:10120
+    depends_on:
+      - "api-gateway"
+  course-service:
+    build: ./course-service
+    container_name: course-service
+    ports:
+      - 10130:10130
+    depends_on:
+      - "api-gateway"
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME:
+      MONGO_INITDB_ROOT_PASSWORD:
+    ports:
+      - 27018:27018
+    volumes:
+      - mongodb_data_container:/data/db
+  mysql:
+    image: mysql:5.6
+    platform: linux/amd64
+    ports:
+      - "3307:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: Login345
+      MYSQL_DATABASE: srs
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+volumes:
+  mongodb_data_container:

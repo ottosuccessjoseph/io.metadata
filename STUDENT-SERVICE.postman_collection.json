@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "f87c4896-6092-4ea9-be3f-3844e6136d73",
+		"name": "STUDENT-SERVICE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE STUDENT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var reference = pm.response.json().reference",
+							"pm.globals.set(\"reference\", reference);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Success\",\n    \"last_name\": \"Otto\",\n    \"email\": \"otto@example.com\",\n    \"username\": \"otto\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:10100/students",
+					"host": [
+						"localhost"
+					],
+					"port": "10100",
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "READ STUDENT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:10100/students/{{reference}}",
+					"host": [
+						"localhost"
+					],
+					"port": "10100",
+					"path": [
+						"students",
+						"{{reference}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE STUDENT",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:10100/students/{{reference}}",
+					"host": [
+						"localhost"
+					],
+					"port": "10100",
+					"path": [
+						"students",
+						"{{reference}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE STUDENT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"test\",\n    \"last_name\": \"example\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:10100/students/{{reference}}",
+					"host": [
+						"localhost"
+					],
+					"port": "10100",
+					"path": [
+						"students",
+						"{{reference}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
