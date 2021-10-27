@@ -1,0 +1,21 @@
+server:
+  port: 10130
+
+spring:
+  application.name: course-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/srs
+    username: root
+    password: Login345
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /rest-api-docs
+  swagger-ui:
+    path: /swagger-ui
